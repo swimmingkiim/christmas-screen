@@ -1,6 +1,5 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
-import postcss from 'postcss';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -11,7 +10,16 @@ const config = {
         css.write('public/bundle.css')
       },
 	kit: {
-		adapter: adapter()
+		adapter: adapter({
+			pages: 'dist', 
+			assets: 'dist',
+			fallback: 'index.html',
+		}),
+		paths: {
+            // change below to your repo name
+            base: "/christmas-screen",
+        },
+		appDir: 'internal',
 	}
 };
 
