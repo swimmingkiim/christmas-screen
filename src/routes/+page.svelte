@@ -1,5 +1,10 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { base } from '$app/paths';
+	import type { PageData } from './$types';
+
+	/** @type {import('./$types').PageData} */
+	export let data: PageData;
 	export const prerender = true;
 
 	$: title = '';
@@ -15,13 +20,20 @@
 			return;
 		}
 		const host = import.meta.env.DEV ? 'http://localhost:5173' : 'https://swimmingkiim.github.io';
-		const url = `${host}${base}/${title}`;
+		const url = `${host}${base}?message=${title}`;
 		await navigator.clipboard.writeText(url);
 		showCopiedAlert = true;
 		setTimeout(() => {
 			showCopiedAlert = false;
 		}, 3000);
 	};
+
+	onMount(() => {
+		console.log(data);
+		if (data.message) {
+			title = data.message;
+		}
+	});
 </script>
 
 <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg" on:click={onCopyShareLink}>Share</button>
