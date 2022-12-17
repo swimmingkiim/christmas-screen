@@ -4,6 +4,8 @@
 	import ChristmasTree from 'src/components/ChristmasTree/ChristmasTree.svelte';
 	import House from 'src/components/House/House.svelte';
 
+	export const prerender = true;
+
 	let width: number;
 	let height: number;
 
