@@ -125,13 +125,13 @@
 		z-index: 2;
 	}
 	#tree-container {
-		width: 500px;
+		width: 27%;
 		max-width: 90%;
 
 		position: absolute;
 		z-index: 1;
 		bottom: 0;
-		left: 50%;
+		@apply left-[20%] md:left-[50%];
 		transform: translateX(-50%);
 	}
 	#houses-container {
