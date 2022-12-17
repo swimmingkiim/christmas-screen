@@ -170,5 +170,9 @@
 		justify-content: flex-end;
 		align-items: center;
 		gap: 1em;
+
+		a {
+			color: #5e5e5e;
+		}
 	}
 </style>
