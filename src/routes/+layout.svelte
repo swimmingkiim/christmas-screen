@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { base } from '$app/paths';
 	import Konva from 'konva';
 	import ChristmasTree from 'src/components/ChristmasTree/ChristmasTree.svelte';
 	import House from 'src/components/House/House.svelte';
@@ -26,6 +27,22 @@
 		}
 	};
 
+	const createCircle = (x: number, y: number) => {
+		const circle = new Konva.Circle({
+			x,
+			y,
+			radius: 5,
+			fill: '#ffffff'
+		});
+		circle.attrs['amplitude'] = getRandomNumberInRange(8, 5);
+		circle.attrs['period'] = getRandomNumberInRange(5000, 3000);
+		circle.attrs['multiplyBy'] = getRandomNumberInRange(100, 0) > 50 ? 1 : -1;
+		return circle;
+	};
+
+	const getRandomNumberInRange = (max: number, min: number) =>
+		Math.floor(Math.random() * (max - min + 1) + min);
+
 	onMount(() => {
 		let stage = new Konva.Stage({
 			container: 'container',
@@ -34,22 +51,6 @@
 		});
 
 		let layer = new Konva.Layer();
-
-		const createCircle = (x: number, y: number) => {
-			const circle = new Konva.Circle({
-				x,
-				y,
-				radius: 5,
-				fill: '#ffffff'
-			});
-			circle.attrs['amplitude'] = getRandomNumberInRange(8, 5);
-			circle.attrs['period'] = getRandomNumberInRange(5000, 3000);
-			circle.attrs['multiplyBy'] = getRandomNumberInRange(100, 0) > 50 ? 1 : -1;
-			return circle;
-		};
-
-		const getRandomNumberInRange = (max: number, min: number) =>
-			Math.floor(Math.random() * (max - min + 1) + min);
 
 		const randomCircles = Array(100)
 			.fill(0)
@@ -88,11 +89,12 @@
 <svelte:window bind:innerWidth={width} bind:innerHeight={height} />
 <main>
 	<slot />
-	<button
-		id="full-screen-btn"
-		class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg"
-		on:click={toggleFullScreen}>{isFullScreen ? 'X' : 'Full Screen'}</button
-	>
+	<header>
+		<a href="{base}/about" class="link link-hover">About this project</a>
+		<button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg" on:click={toggleFullScreen}
+			>{isFullScreen ? 'X' : 'Full Screen'}</button
+		>
+	</header>
 	<div id="container" />
 	<div id="tree-container">
 		<ChristmasTree />
@@ -156,10 +158,17 @@
 		z-index: -1;
 	}
 
-	#full-screen-btn {
+	header {
+		width: 100%;
+		padding: 1em 1.5em;
+
 		position: absolute;
-		top: 1em;
-		right: 1.5em;
 		z-index: 100;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+		gap: 1em;
 	}
 </style>
