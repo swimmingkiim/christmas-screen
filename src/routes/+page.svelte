@@ -21,11 +21,28 @@
 		}
 		const host = import.meta.env.DEV ? 'http://localhost:5173' : 'https://swimmingkiim.github.io';
 		const url = `${host}${base}?message=${title}`;
-		await navigator.clipboard.writeText(url);
-		showCopiedAlert = true;
-		setTimeout(() => {
-			showCopiedAlert = false;
-		}, 3000);
+		// const androidUrl = `'intent://${encodeURI(url).replace(
+		// 	'https://',
+		// 	''
+		// )}#Intent;scheme=https;package=com.android.chrome;end'`;
+		if (navigator.platform.indexOf('Android') >= 0) {
+			await navigator.clipboard.writeText(encodeURI(url));
+			showCopiedAlert = true;
+			setTimeout(() => {
+				showCopiedAlert = false;
+			}, 3000);
+		} else if (navigator.share) {
+			navigator.share({
+				title: 'Christmas Message',
+				url: encodeURI(url)
+			});
+		} else {
+			await navigator.clipboard.writeText(encodeURI(url));
+			showCopiedAlert = true;
+			setTimeout(() => {
+				showCopiedAlert = false;
+			}, 3000);
+		}
 	};
 
 	onMount(() => {
