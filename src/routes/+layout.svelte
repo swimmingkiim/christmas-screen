@@ -6,6 +6,7 @@
 	import House from 'src/components/House/House.svelte';
 
 	import '../app.css';
+	import { initKakao } from '../services/Kakao/kakao';
 
 	export const prerender = true;
 
@@ -46,6 +47,7 @@
 		Math.floor(Math.random() * (max - min + 1) + min);
 
 	onMount(() => {
+		initKakao();
 		let stage = new Konva.Stage({
 			container: 'container',
 			width: width,
