@@ -33,11 +33,11 @@
 		const circle = new Konva.Circle({
 			x,
 			y,
-			radius: 5,
+			radius: 3,
 			fill: '#ffffff'
 		});
 		circle.attrs['amplitude'] = getRandomNumberInRange(8, 5);
-		circle.attrs['period'] = getRandomNumberInRange(5000, 3000);
+		circle.attrs['period'] = getRandomNumberInRange(8000, 5000);
 		circle.attrs['multiplyBy'] = getRandomNumberInRange(100, 0) > 50 ? 1 : -1;
 		return circle;
 	};
@@ -54,7 +54,7 @@
 
 		let layer = new Konva.Layer();
 
-		const randomCircles = Array(100)
+		const randomCircles = Array(50)
 			.fill(0)
 			.map((_) => {
 				return createCircle(getRandomNumberInRange(width, 0), getRandomNumberInRange(height, 0));
