@@ -40,7 +40,7 @@
 <style lang="scss">
 	#outer-container {
 		position: fixed;
-		z-index: 100;
+		z-index: 110;
 		top: 50%;
 		left: 50%;
 		transform: translateX(-50%) translateY(-50%);
