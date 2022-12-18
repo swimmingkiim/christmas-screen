@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { base } from '$app/paths';
 	import type { PageData } from './$types';
+	import { shareWithKakao } from 'src/services/Kakao/kakao';
 
 	/** @type {import('./$types').PageData} */
 	export let data: PageData;
@@ -53,7 +54,9 @@
 			return;
 		}
 		const url = getShareUrl(title);
-		if (navigator.share) {
+		if (navigator.userAgent.indexOf('KAKAOTALK') >= 0) {
+			shareWithKakao(url, title);
+		} else if (navigator.share) {
 			navigator.share({
 				title: 'Christmas Message',
 				url
