@@ -10,6 +10,37 @@
 	$: title = '';
 	$: showCopiedAlert = false;
 	$: showEmptyAlert = false;
+	$: showErrorAlert = false;
+	$: shouldOpenInChrome = false;
+
+	const getShareUrl = (message: string) => {
+		const host = import.meta.env.DEV ? 'http://localhost:5173' : 'https://swimmingkiim.github.io';
+		const url = `${host}${base}?message=${message}`;
+		return encodeURI(url);
+	};
+
+	const fallbackOnClipboardWrite = () => {
+		const textArea = document.createElement('textarea');
+		textArea.value = getShareUrl(title);
+
+		textArea.style.top = '0';
+		textArea.style.left = '0';
+		textArea.style.position = 'fixed';
+		textArea.style.display = 'hidden';
+
+		document.body.appendChild(textArea);
+		textArea.focus();
+		textArea.select();
+
+		try {
+			const successful = document.execCommand('copy');
+			document.body.removeChild(textArea);
+			return true;
+		} catch (err) {
+			document.body.removeChild(textArea);
+			return false;
+		}
+	};
 
 	const onCopyShareLink = async () => {
 		if (title.length <= 0) {
@@ -19,41 +50,60 @@
 			}, 3000);
 			return;
 		}
-		const host = import.meta.env.DEV ? 'http://localhost:5173' : 'https://swimmingkiim.github.io';
-		const url = `${host}${base}?message=${title}`;
-		// const androidUrl = `'intent://${encodeURI(url).replace(
-		// 	'https://',
-		// 	''
-		// )}#Intent;scheme=https;package=com.android.chrome;end'`;
-		if (navigator.platform.indexOf('Android') >= 0) {
-			await navigator.clipboard.writeText(encodeURI(url));
-			showCopiedAlert = true;
-			setTimeout(() => {
-				showCopiedAlert = false;
-			}, 3000);
-		} else if (navigator.share) {
+		const url = getShareUrl(title);
+		if (navigator.share) {
 			navigator.share({
 				title: 'Christmas Message',
-				url: encodeURI(url)
+				url
 			});
 		} else {
-			await navigator.clipboard.writeText(encodeURI(url));
-			showCopiedAlert = true;
-			setTimeout(() => {
-				showCopiedAlert = false;
-			}, 3000);
+			navigator.clipboard
+				.writeText(url)
+				.then(() => {
+					showCopiedAlert = true;
+					setTimeout(() => {
+						showCopiedAlert = false;
+					}, 3000);
+				})
+				.catch((_) => {
+					const result = fallbackOnClipboardWrite();
+					if (result) {
+						showCopiedAlert = true;
+						setTimeout(() => {
+							showCopiedAlert = false;
+						}, 3000);
+					} else {
+						showErrorAlert = true;
+						setTimeout(() => {
+							showErrorAlert = false;
+						}, 3000);
+					}
+				});
 		}
 	};
 
 	onMount(() => {
-		console.log(data);
 		if (data.message) {
 			title = data.message;
+		}
+		if (!navigator.share && !navigator.clipboard) {
+			shouldOpenInChrome = true;
 		}
 	});
 </script>
 
-<button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg" on:click={onCopyShareLink}>Share</button>
+{#if shouldOpenInChrome}
+	<a
+		href={`intent://${getShareUrl(title).replace(
+			'https://',
+			''
+		)}#Intent;scheme=https;package=com.android.chrome;end'`}
+		target="__blank"
+		class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Share</a
+	>
+{:else}
+	<button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg" on:click={onCopyShareLink}>Share</button>
+{/if}
 <div id="title-container">
 	<textarea
 		placeholder="Type here"
@@ -99,6 +149,25 @@
 		</div>
 	</div>
 {/if}
+{#if showErrorAlert}
+	<div class="alert alert-error shadow-lg">
+		<div>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="stroke-current flex-shrink-0 h-6 w-6"
+				fill="none"
+				viewBox="0 0 24 24"
+				><path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+				/></svg
+			>
+			<span>Something went wrong!</span>
+		</div>
+	</div>
+{/if}
 
 <style lang="scss">
 	#title-container {
@@ -130,7 +199,7 @@
 			}
 		}
 	}
-	button {
+	.btn {
 		margin: 1em 1.5em;
 
 		position: absolute;
