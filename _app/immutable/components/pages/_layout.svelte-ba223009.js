@@ -10521,9 +10521,9 @@ function create_fragment(ctx) {
   let current;
   let mounted;
   let dispose;
-  add_render_callback(ctx[7]);
-  const default_slot_template = ctx[6].default;
-  const default_slot = create_slot(default_slot_template, ctx, ctx[5], null);
+  add_render_callback(ctx[6]);
+  const default_slot_template = ctx[5].default;
+  const default_slot = create_slot(default_slot_template, ctx, ctx[4], null);
   christmastree = new ChristmasTree({});
   house0 = new House({});
   house1 = new House({});
@@ -10648,7 +10648,7 @@ function create_fragment(ctx) {
       current = true;
       if (!mounted) {
         dispose = [
-          listen(window, "resize", ctx[7]),
+          listen(window, "resize", ctx[6]),
           listen(button, "click", ctx[3])
         ];
         mounted = true;
@@ -10656,13 +10656,13 @@ function create_fragment(ctx) {
     },
     p(ctx2, [dirty]) {
       if (default_slot) {
-        if (default_slot.p && (!current || dirty & 32)) {
+        if (default_slot.p && (!current || dirty & 16)) {
           update_slot_base(
             default_slot,
             default_slot_template,
             ctx2,
-            ctx2[5],
-            !current ? get_all_dirty_from_scope(ctx2[5]) : get_slot_changes(default_slot_template, ctx2[5], dirty, null),
+            ctx2[4],
+            !current ? get_all_dirty_from_scope(ctx2[4]) : get_slot_changes(default_slot_template, ctx2[4], dirty, null),
             null
           );
         }
@@ -10708,7 +10708,6 @@ function create_fragment(ctx) {
 function instance($$self, $$props, $$invalidate) {
   let isFullScreen;
   let { $$slots: slots = {}, $$scope } = $$props;
-  const prerender = true;
   let width;
   let height;
   const toggleFullScreen = () => {
@@ -10767,27 +10766,15 @@ function instance($$self, $$props, $$invalidate) {
   }
   $$self.$$set = ($$props2) => {
     if ("$$scope" in $$props2)
-      $$invalidate(5, $$scope = $$props2.$$scope);
+      $$invalidate(4, $$scope = $$props2.$$scope);
   };
   $$invalidate(2, isFullScreen = false);
-  return [
-    width,
-    height,
-    isFullScreen,
-    toggleFullScreen,
-    prerender,
-    $$scope,
-    slots,
-    onwindowresize
-  ];
+  return [width, height, isFullScreen, toggleFullScreen, $$scope, slots, onwindowresize];
 }
 class Layout extends SvelteComponent {
   constructor(options) {
     super();
-    init(this, options, instance, create_fragment, safe_not_equal, { prerender: 4 });
-  }
-  get prerender() {
-    return this.$$.ctx[4];
+    init(this, options, instance, create_fragment, safe_not_equal, {});
   }
 }
 export {
