@@ -1,41 +1,63 @@
 {
   "src/routes/+page.css": {
-    "file": "christmas-screen/internal/immutable/assets/_page-bdf2e58f.css",
+    "file": "internal/immutable/assets/_page-bdf2e58f.css",
     "src": "src/routes/+page.css"
   },
   "src/routes/about/+page.css": {
-    "file": "christmas-screen/internal/immutable/assets/_page-46928aea.css",
+    "file": "internal/immutable/assets/_page-46928aea.css",
     "src": "src/routes/about/+page.css"
   },
   "src/routes/+layout.css": {
-    "file": "christmas-screen/internal/immutable/assets/_layout-400891b5.css",
+    "file": "internal/immutable/assets/_layout-400891b5.css",
     "src": "src/routes/+layout.css"
   },
-  "_kakao-cf586f8f.js": {
-    "file": "christmas-screen/internal/immutable/chunks/kakao-cf586f8f.js"
+  ".svelte-kit/generated/nodes/1.js": {
+    "file": "internal/immutable/chunks/1-dc19371c.js",
+    "src": ".svelte-kit/generated/nodes/1.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/@sveltejs/kit/src/runtime/components/error.svelte"
+    ]
   },
-  "__page-bf2f78ce.js": {
-    "file": "christmas-screen/internal/immutable/chunks/_page-bf2f78ce.js"
+  "src/routes/+page.ts": {
+    "file": "internal/immutable/modules/pages/_page.ts-adbdbf58.js",
+    "src": "src/routes/+page.ts",
+    "isEntry": true,
+    "imports": [
+      "__page-bf2f78ce.js"
+    ]
   },
   "node_modules/@sveltejs/kit/src/runtime/components/error.svelte": {
-    "file": "christmas-screen/internal/immutable/components/error.svelte-d6bf783e.js",
+    "file": "internal/immutable/components/error.svelte-8b8227cd.js",
     "src": "node_modules/@sveltejs/kit/src/runtime/components/error.svelte",
     "isEntry": true,
     "imports": [
       "_paths-7ccf1957.js",
-      "_singletons-44c1d96a.js"
+      "_singletons-f8dd5e15.js"
     ]
   },
-  ".svelte-kit/generated/nodes/0.js": {
-    "file": "christmas-screen/internal/immutable/chunks/0-25979a53.js",
-    "src": ".svelte-kit/generated/nodes/0.js",
+  "_singletons-f8dd5e15.js": {
+    "file": "internal/immutable/chunks/singletons-f8dd5e15.js",
+    "imports": [
+      "_paths-7ccf1957.js"
+    ]
+  },
+  ".svelte-kit/generated/nodes/3.js": {
+    "file": "internal/immutable/chunks/3-bd3756d8.js",
+    "src": ".svelte-kit/generated/nodes/3.js",
     "isDynamicEntry": true,
     "imports": [
-      "src/routes/+layout.svelte"
+      "src/routes/about/+page.svelte"
     ]
   },
+  "__page-bf2f78ce.js": {
+    "file": "internal/immutable/chunks/_page-bf2f78ce.js"
+  },
+  "_kakao-cf586f8f.js": {
+    "file": "internal/immutable/chunks/kakao-cf586f8f.js"
+  },
   ".svelte-kit/generated/nodes/2.js": {
-    "file": "christmas-screen/internal/immutable/chunks/2-fe971a07.js",
+    "file": "internal/immutable/chunks/2-fe971a07.js",
     "src": ".svelte-kit/generated/nodes/2.js",
     "isDynamicEntry": true,
     "imports": [
@@ -43,41 +65,16 @@
       "src/routes/+page.svelte"
     ]
   },
-  "src/routes/+page.ts": {
-    "file": "christmas-screen/internal/immutable/modules/pages/_page.ts-adbdbf58.js",
-    "src": "src/routes/+page.ts",
-    "isEntry": true,
-    "imports": [
-      "__page-bf2f78ce.js"
-    ]
-  },
-  "_singletons-44c1d96a.js": {
-    "file": "christmas-screen/internal/immutable/chunks/singletons-44c1d96a.js",
-    "imports": [
-      "_paths-7ccf1957.js"
-    ]
-  },
-  ".svelte-kit/generated/nodes/1.js": {
-    "file": "christmas-screen/internal/immutable/chunks/1-4d2e1a78.js",
-    "src": ".svelte-kit/generated/nodes/1.js",
+  ".svelte-kit/generated/nodes/0.js": {
+    "file": "internal/immutable/chunks/0-25979a53.js",
+    "src": ".svelte-kit/generated/nodes/0.js",
     "isDynamicEntry": true,
     "imports": [
-      "node_modules/@sveltejs/kit/src/runtime/components/error.svelte"
+      "src/routes/+layout.svelte"
     ]
-  },
-  ".svelte-kit/generated/nodes/3.js": {
-    "file": "christmas-screen/internal/immutable/chunks/3-bd3756d8.js",
-    "src": ".svelte-kit/generated/nodes/3.js",
-    "isDynamicEntry": true,
-    "imports": [
-      "src/routes/about/+page.svelte"
-    ]
-  },
-  "_paths-7ccf1957.js": {
-    "file": "christmas-screen/internal/immutable/chunks/paths-7ccf1957.js"
   },
   "src/routes/+page.svelte": {
-    "file": "christmas-screen/internal/immutable/components/pages/_page.svelte-c85b4816.js",
+    "file": "internal/immutable/components/pages/_page.svelte-c85b4816.js",
     "src": "src/routes/+page.svelte",
     "isEntry": true,
     "imports": [
@@ -85,16 +82,30 @@
       "_kakao-cf586f8f.js"
     ],
     "css": [
-      "christmas-screen/internal/immutable/assets/_page-bdf2e58f.css"
+      "internal/immutable/assets/_page-bdf2e58f.css"
     ]
   },
+  "src/routes/about/+page.svelte": {
+    "file": "internal/immutable/components/pages/about/_page.svelte-803a2922.js",
+    "src": "src/routes/about/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_paths-7ccf1957.js"
+    ],
+    "css": [
+      "internal/immutable/assets/_page-46928aea.css"
+    ]
+  },
+  "_paths-7ccf1957.js": {
+    "file": "internal/immutable/chunks/paths-7ccf1957.js"
+  },
   "node_modules/@sveltejs/kit/src/runtime/client/start.js": {
-    "file": "christmas-screen/internal/immutable/start-21d8a931.js",
+    "file": "internal/immutable/start-8df68cae.js",
     "src": "node_modules/@sveltejs/kit/src/runtime/client/start.js",
     "isEntry": true,
     "imports": [
       "_paths-7ccf1957.js",
-      "_singletons-44c1d96a.js"
+      "_singletons-f8dd5e15.js"
     ],
     "dynamicImports": [
       ".svelte-kit/generated/nodes/0.js",
@@ -103,19 +114,8 @@
       ".svelte-kit/generated/nodes/3.js"
     ]
   },
-  "src/routes/about/+page.svelte": {
-    "file": "christmas-screen/internal/immutable/components/pages/about/_page.svelte-803a2922.js",
-    "src": "src/routes/about/+page.svelte",
-    "isEntry": true,
-    "imports": [
-      "_paths-7ccf1957.js"
-    ],
-    "css": [
-      "christmas-screen/internal/immutable/assets/_page-46928aea.css"
-    ]
-  },
   "src/routes/+layout.svelte": {
-    "file": "christmas-screen/internal/immutable/components/pages/_layout.svelte-493d31e6.js",
+    "file": "internal/immutable/components/pages/_layout.svelte-493d31e6.js",
     "src": "src/routes/+layout.svelte",
     "isEntry": true,
     "imports": [
@@ -123,7 +123,7 @@
       "_kakao-cf586f8f.js"
     ],
     "css": [
-      "christmas-screen/internal/immutable/assets/_layout-400891b5.css"
+      "internal/immutable/assets/_layout-400891b5.css"
     ]
   }
 }
