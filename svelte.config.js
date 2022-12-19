@@ -11,14 +11,13 @@ const config = {
       },
 	kit: {
 		adapter: adapter({
-			pages: 'dist', 
-			assets: 'dist',
+			pages: 'build',
+			assets: 'build',
 			fallback: 'index.html',
 		}),
 		paths: {
-            // change below to your repo name
-            base: "/christmas-screen",
-        },
+		 base: "/christmas-screen",
+		},
 		appDir: 'internal',
 	}
 };
