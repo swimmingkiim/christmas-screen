@@ -209,8 +209,9 @@
 		textarea {
 			width: 20em;
 			max-width: 75% !important;
-			padding: 1em 1.5em;
-			font-size: 180%;
+			padding: 0.5em 0.7em;
+			font-size: 130%;
+			line-height: 1.5em;
 			text-align: center;
 
 			resize: none;
