@@ -87,10 +87,14 @@
 		}
 	};
 
-	const resizeTextarea = (evt: KeyboardEvent) => {
-		if (evt.target) {
-			const textarea = evt.target as HTMLTextAreaElement;
-			if (textarea.clientHeight < textarea.scrollHeight) {
+	const resizeTextarea = (evt: Event) => {
+		let target = evt.target;
+		if (evt.type === 'set-textarea-height') {
+			target = document.querySelector('textarea');
+		}
+		if (target) {
+			const textarea = target as HTMLTextAreaElement;
+			if (evt.type === 'set-textarea-height' || textarea.clientHeight < textarea.scrollHeight) {
 				textarea.style.height = textarea.scrollHeight + 'px';
 			}
 		}
@@ -99,6 +103,9 @@
 	onMount(() => {
 		if (data.message) {
 			title = data.message;
+			setTimeout(() => {
+				resizeTextarea(new Event('set-textarea-height'));
+			}, 50);
 		}
 		if (!navigator.share && !navigator.clipboard) {
 			shouldOpenInChrome = true;
