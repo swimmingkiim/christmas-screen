@@ -87,6 +87,15 @@
 		}
 	};
 
+	const resizeTextarea = (evt: KeyboardEvent) => {
+		if (evt.target) {
+			const textarea = evt.target as HTMLTextAreaElement;
+			if (textarea.clientHeight < textarea.scrollHeight) {
+				textarea.style.height = textarea.scrollHeight + 'px';
+			}
+		}
+	};
+
 	onMount(() => {
 		if (data.message) {
 			title = data.message;
@@ -113,6 +122,8 @@
 	<textarea
 		placeholder="Type here"
 		class="textarea textarea-ghost {title.length > 0 ? `text-error` : ''}"
+		on:keydown={resizeTextarea}
+		on:keyup={resizeTextarea}
 		bind:value={title}
 	/>
 </div>
@@ -190,12 +201,13 @@
 
 		textarea {
 			width: 20em;
-			max-width: 100% !important;
+			max-width: 75% !important;
 			padding: 1em 1.5em;
-			font-size: 250%;
+			font-size: 180%;
 			text-align: center;
 
 			resize: none;
+			overflow-y: hidden;
 
 			background-color: transparent;
 
